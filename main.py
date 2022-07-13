@@ -31,17 +31,18 @@ def main():
                        "M - Mark a place as visited\n"
                        "Q - Quit").lower()
 
-    display_list_of_places(menu_input, places)
+    get_max_name_length(menu_input, places)
 
 
-def display_list_of_places(choice_input, places):
-    """get maximum length of city and country name and call display_formatted_list to display a formatted list of
-    places based on the respective lengths"""
+def get_max_name_length(choice_input, places):
+    """get maximum length of city and country name and call display_formatted_list"""
     while choice_input:
         if choice_input == "l":
 
             city_names = []
             country_names = []
+
+            # add the name of each city and country to respective lists
             for each_place in places:
                 city_name = each_place[0].strip("\n")
                 city_names.append(city_name)
@@ -49,29 +50,48 @@ def display_list_of_places(choice_input, places):
                 country_name = each_place[1].strip("\n")
                 country_names.append(country_name)
 
-            max_country_name = max(country_names, key=len)
-            max_city_name = max(city_names, key=len)
+            # get the name of city and country with the maximum string length from respective lists
+            max_country_length = len(max(country_names, key=len))
+            max_city_length = len(max(city_names, key=len))
 
-            max_country_length = len(max_country_name)
-            max_city_length = len(max_city_name)
-
-            display_formatted_list(max_city_length, max_city_name, max_country_length, max_country_name, places)
+            display_formatted_list(max_city_length, max_country_length, places)
 
         break
 
 
-def display_formatted_list(max_city_length, max_city_name, max_country_length, max_country_name, places):
-    """Display a neatly formatted list of places when user chooses l"""
+def display_formatted_list(max_city_length, max_country_length, places):
+    """Display a neatly formatted list of places when user chooses list"""
+    unvisited_count = 0
+    count = 0
     for place in places:
+        count += 1
         additional_city_space = max_city_length - len(place[0])
         additional_country_space = max_country_length - len(place[1])
 
-        # display a dynamic lined up list based on longest city name and country name.
-        if len(place[0]) != len(max_city_name) and len(place[1]) != len(max_country_name):
-            print(place[0], "{:{}}in".format("", additional_city_space), place[1],
-                  "{:{}}priority".format("", additional_country_space), place[2])
+        # display a dynamic lined up list based on longest city and country name.
+        if len(place[0]) != max_city_length and len(place[1]) != max_country_length:
+            # check if place is unvisited(n) and add a star(*) before the number if true
+            if "n" in place[3]:
+                unvisited_count += 1
+                print(f"*{count}.", place[0], "{:{}}in".format("", additional_city_space), place[1],
+                      "{:{}}priority".format("", additional_country_space), place[2])
+            else:
+                print(f" {count}.", place[0], "{:{}}in".format("", additional_city_space), place[1],
+                      "{:{}}priority".format("", additional_country_space), place[2])
+
         else:
-            print(place[0], "in", place[1], "priority", place[2])
+            if "n" in place[3]:
+                unvisited_count += 1
+                print(f"*{count}.", place[0], "in", place[1], "priority", place[2])
+            else:
+                print(f" {count}.", place[0], "in", place[1], "priority", place[2])
+
+    display_visit_status(count, unvisited_count)
+
+
+def display_visit_status(count, unvisited_count):
+    """display the number of places visited and not visited"""
+    print(f"{count} places. You still want to visit {unvisited_count} places.")
 
 
 main()
