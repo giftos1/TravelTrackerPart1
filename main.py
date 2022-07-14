@@ -18,7 +18,7 @@ def main():
         for each_row in output_file:
             row = each_row.strip("\n")
             lines = row.split(",")  # split each row in file to a list
-            lines[2] = int(lines[2])  # convert string to integer for sorting
+            lines[2] = int(lines[2])  # convert number string to integer for sorting
             places.append(lines)
 
     places.sort(key=itemgetter(3, 2))  # sort list by visited status then priority
@@ -26,21 +26,33 @@ def main():
     print(len(places), "places loaded from", FILENAME)
 
     letters_input = ["l", "a", "m", "q"]
-    menu_input = menu()
+    menu_input = input_menu()
     while menu_input != "q":
         if menu_input == "l":
             get_max_name_length(places)
-            menu_input = menu()
+            menu_input = input_menu()
+
+        # Get name, country and priority input of a place and add them to the Travel Tracker
+        elif menu_input == "a":
+            name_input = input("Name: ")
+            check_name_input(name_input) # Check for blank input
+
+            country_input = input("Country: ")
+            check_country_input(country_input)  # Check for blank input
+
+            get_priority(name_input, country_input)  # Get priority input and check for ValueError
+
+            menu_input = input_menu()
 
         # check if the wrong letter has been typed and return the menu if true
         elif menu_input not in letters_input:
             print("Invalid menu choice")
-            menu_input = menu()
+            menu_input = input_menu()
 
     print("Have a nice day :)")  # display message when user chooses q
 
 
-def menu():
+def input_menu():
     menu_input = input("Menu:\n"
                        "L - List Places\n"
                        "A - Add new place\n"
@@ -74,6 +86,7 @@ def display_formatted_list(max_city_length, max_country_length, places):
     """Display a neatly formatted list of places when user chooses list"""
     unvisited_count = 0
     count = 0
+
     for place in places:
         count += 1
         additional_city_space = max_city_length - len(place[0])
@@ -81,6 +94,7 @@ def display_formatted_list(max_city_length, max_country_length, places):
 
         # display a dynamic lined up list based on longest city and country name.
         if len(place[0]) != max_city_length and len(place[1]) != max_country_length:
+
             # check if place is unvisited(n) and add a star(*) before the number if true
             # count the number of unvisited places
             if "n" in place[3]:
@@ -104,6 +118,37 @@ def display_formatted_list(max_city_length, max_country_length, places):
 def display_visit_status(count, unvisited_count):
     """display the number of places visited and not visited"""
     print(f"{count} places. You still want to visit {unvisited_count} places.")
+
+
+def check_name_input(name_input):
+    """Check if the name_input has any blank input"""
+    while name_input == "":
+        print("Input can not be blank")
+        name_input = input("Name: ")
+
+
+def check_country_input(country_input):
+    """Check if the country_input has any blank input"""
+    while country_input == "":
+        print("Input can not be blank")
+        country_input = input("Country: ")
+
+
+def get_priority(name, country):
+    """Get priority input and validate input
+    Display the added place through printing the name,country and priority of the place"""
+    validate_input = False
+    while not validate_input:
+        try:
+            priority_input = int(input("Priority: "))
+            if priority_input <= 0:
+                print("Number must be > 0")
+            else:
+                validate_input = True
+                print(f"{name} in {country} (priority {priority_input}) added to Travel Tracker")  # display added place
+
+        except ValueError:
+            print("Invalid input; enter a valid number")
 
 
 main()
