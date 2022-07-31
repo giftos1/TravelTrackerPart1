@@ -1,7 +1,7 @@
 """
 Name:Gift Sydney Ogingo
 Date started:5/7/2022
-GitHub URL:https://github.com/giftos1/TravelTrackerProject
+GitHub URL:https://github.com/giftos1/TravelTrackerPart1
 """
 from operator import itemgetter
 
