@@ -4,4 +4,149 @@ By: Gift Sydney Ogingo
 This repo contains starter files including a Python file and two CSV files.  
 (`temp.csv` is to copy from in case I delete the contents of `places.csv` and want the original data back).
 
-# TODO (Include Project Reflection)
+# The expected final output is shown below:
+- Travel Tracker 1.0 - by Gift Sydney Ogingo
+- 3 places loaded from places.csv
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> l
+- *1. Lima in Peru priority 3
+- *2. Rome in Italy priority 12
+- 3. Auckland in New Zealand priority 1
+- 3 places. You still want to visit 2 places.
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> B
+- Invalid menu choice
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> a
+- Name:
+- Input can not be blank
+- Name:
+- Input can not be blank
+- Name: Uluru
+- Country:
+- Input can not be blank
+- Country: Australia
+- Priority:
+- Invalid input; enter a valid number
+- Priority: -1
+- Number must be > 0
+- Priority: why?
+- Invalid input; enter a valid number
+- Priority: 2
+- Uluru in Australia (priority 2) added to Travel Tracker
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> L
+- *1. Uluru in Australia priority 2
+- *2. Lima in Peru priority 3
+- *3. Rome in Italy priority 12
+- 4. Auckland in New Zealand priority 1
+- 4 places. You still want to visit 3 places.
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> m
+- *1. Uluru in Australia priority 2
+- *2. Lima in Peru priority 3
+- *3. Rome in Italy priority 12
+- 4. Auckland in New Zealand priority 1
+- 4 places. You still want to visit 3 places.
+- Enter the number of a place to mark as visited
+- >>> Uluru
+- Invalid input; enter a valid number
+- >>> -1
+- Number must be > 0
+- >>> 9
+- Invalid place number
+- >>> 4
+- That place is already visited
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> m
+- *1. Uluru in Australia priority 2
+- *2. Lima in Peru priority 3
+- *3. Rome in Italy priority 12
+- 4. Auckland in New Zealand priority 1
+- 4 places. You still want to visit 3 places.
+- Enter the number of a place to mark as visited
+- >>> 1
+- Uluru in Australia visited!
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> m
+- *1. Lima in Peru priority 3
+- *2. Rome in Italy priority 12
+- 3. Auckland in New Zealand priority 1
+- 4. Uluru in Australia priority 2
+- 4 places. You still want to visit 2 places.
+- Enter the number of a place to mark as visited
+- >>> 1
+- Lima in Peru visited!
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> m
+- *1. Rome in Italy priority 12
+- 2. Auckland in New Zealand priority 1
+- 3. Uluru in Australia priority 2
+- 4. Lima in Peru priority 3
+- 4 places. You still want to visit 1 places.
+- Enter the number of a place to mark as visited
+- >>> 1
+- Rome in Italy visited!
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> m
+- No unvisited places
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> L
+- 1. Auckland in New Zealand priority 1
+- 2. Uluru in Australia priority 2
+- 3. Lima in Peru priority 3
+- 4. Rome in Italy priority 12
+- 4 places. No places left to visit. Why not add a new place?
+- Menu:
+- L - List places
+- A - Add new place
+- M - Mark a place as visited
+- Q - Quit
+- >>> q
+- 4 places saved to places.csv
+- Have a nice day :)
+# At the end of this run, the saved CSV file contained:
+- Auckland,New Zealand,1,v
+- Uluru,Australia,2,v
+- Lima,Peru,3,v
+- Rome,Italy,12,v

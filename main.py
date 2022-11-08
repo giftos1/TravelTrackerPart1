@@ -1,9 +1,11 @@
 """
 Name:Gift Sydney Ogingo
 Date started:5/7/2022
-GitHub URL:https://github.com/giftos1/TravelTrackerProject
+GitHub URL:https://github.com/giftos1/TravelTrackerPart1
 """
 from operator import itemgetter
+
+Visited = "v"
 
 FILENAME = 'places.csv'
 NOT_VISITED = "n"
@@ -18,17 +20,26 @@ def main():
     with open('places.csv', 'r') as output_file:
         for each_row in output_file:
             row = each_row.strip("\n")
-            lines = row.split(",")  # split each row in file to a list
-            lines[2] = int(lines[2])  # convert number string to integer for sorting
-            places.append(lines)
+            rows = row.split(",")  # split each row in file to a list
+            rows[2] = int(rows[2])  # convert number string to integer for sorting
+            places.append(rows)
 
     places.sort(key=itemgetter(3, 2))  # sort list by visited status then priority
+
     print(len(places), "places loaded from", FILENAME)
-    letters = ["l", "a", "m", "q"]
+
+    menu_choices = ["l", "a", "m", "q"]
     place_file = open("places.csv", "a+")
+
     menu_input = ""
     while menu_input != "q":
-        menu_input = input_menu()
+        menu_input = input("Menu:\n"
+                           "L - List Places\n"
+                           "A - Add new place\n"
+                           "M - Mark a place as visited\n"
+                           "Q - Quit\n"
+                           ">>").lower()
+
         if menu_input == "l":
             get_max_name_length(places)
 
@@ -48,23 +59,13 @@ def main():
             else:
                 print("No unvisited places")
 
-        elif menu_input not in letters:
+        elif menu_input not in menu_choices:
             print("Invalid menu choice")
 
         else:
             print(f"{len(places)} places saved in places.csv")
 
     print("Have a nice day:)")  # display message when user chooses q
-
-
-def input_menu():
-    menu_input = input("Menu:\n"
-                       "L - List Places\n"
-                       "A - Add new place\n"
-                       "M - Mark a place as visited\n"
-                       "Q - Quit\n"
-                       ">>").lower()
-    return menu_input
 
 
 def validate_country_input():
@@ -205,11 +206,11 @@ def convert_unvisited_place(number_input, places):
     for count, place in enumerate(places):
         count += 1
         while number_input == count:  # checks the number which the user types in that corresponds to a given place
-            if place[3] == "v":
+            if place[3] == Visited:
                 print("That place is already visited!")
             else:
                 print(f"{place[0]} in {place[1]} visited!")
-                place[3] = "v"
+                place[3] = Visited
                 places.sort(key=itemgetter(3, 2))
             break
 
