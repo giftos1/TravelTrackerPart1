@@ -1,6 +1,34 @@
 # Travel Tracker Project
 By: Gift Sydney Ogingo  
 
+# Program Overview:
+This program is a simple "travel tracker" that allows a user to track places they wish to visit and
+places they have already visited.
+
+The program reads and writes a list of places in a text file,
+and each place has:
+ name, country, priority, whether it is visited (v) or unvisited (n)
+
+Users can choose to see the list of places, including the total number of places and unvisited
+places.
+
+The list will be sorted by visited status then by priority (decreasing number).
+
+Users can add new places and mark places as visited.
+They cannot change places from visited to unvisited.
+
+# Coding Requirements
+- Only load (read) the places file once, when the program starts.
+- Only save (write) the places file once, when the program ends.
+- Store the place data in a list of lists and pass that to any functions that need access
+to it.
+- The only global variables used are constants.
+- The menu choice should handle uppercase and lowercase letters.
+- Exception handling is used where appropriate to deal with input errors (including entering
+numbers and selecting places). 
+- I have used generic, customisable functions to perform input with error checking (e.g. getting the place name and country
+can reuse the same function).
+
 This repo contains starter files including a Python file and two CSV files.  
 (`temp.csv` is to copy from in case I delete the contents of `places.csv` and want the original data back).
 
