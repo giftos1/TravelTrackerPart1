@@ -6,8 +6,7 @@ This program is a simple "travel tracker" that allows a user to track places the
 places they have already visited.
 
 The program reads and writes a list of places in a text file,
-and each place has:
- name, country, priority, whether it is visited (v) or unvisited (n)
+and each place has: name, country, priority, whether it is visited (v) or unvisited (n)
 
 Users can choose to see the list of places, including the total number of places and unvisited
 places.
@@ -15,6 +14,7 @@ places.
 The list will be sorted by visited status then by priority (decreasing number).
 
 Users can add new places and mark places as visited.
+
 They cannot change places from visited to unvisited.
 
 # Coding Requirements
@@ -29,8 +29,13 @@ numbers and selecting places).
 - I have used generic, customisable functions to perform input with error checking (e.g. getting the place name and country
 can reuse the same function).
 
-This repo contains starter files including a Python file and two CSV files.  
-(`temp.csv` is to copy from in case I delete the contents of `places.csv` and want the original data back).
+# Output Requirements
+- The sample output is intended to show a large (but maybe not exhaustive) range of situations including user input error handling.
+- The visited place numbers show as roman numerals(i, ii. iii) in the preview but tne program functions with numerals such as 1., 2. , 3. and so on. (markdown file problem)
+- The program matches the sample output below; including spaces, spelling, and the formatting of the place lists.
+
+This repo contains this projects' files.  
+(`temp.csv` has the original data and I used it to retrieve the data back in case I edited the contents of `places.csv` and want the original data back).
 
 # The expected final output is shown below:
 - Travel Tracker 1.0 - by Gift Sydney Ogingo
