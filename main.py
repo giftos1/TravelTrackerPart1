@@ -42,7 +42,8 @@ def main():
 
         if menu_input == "l":
             place = [place for place in places]
-            if NOT_VISITED in place[0][3]:
+
+            if NOT_VISITED in place[0][3]:  # check if there are still any unvisited places
                 get_max_name_length(places)
             else:
                 print(len(places), "places. No places left to visit why not add a new place?")
@@ -56,7 +57,7 @@ def main():
 
         elif menu_input == "m":
             place = [place for place in places]
-            if NOT_VISITED in place[0][3]:
+            if NOT_VISITED in place[0][3]:  # check if there are still any unvisited places
                 get_max_name_length(places)
                 print("Enter the number of a place to mark as visited")
                 place_number_input(places)
@@ -64,10 +65,10 @@ def main():
                 print("No unvisited places")
 
         elif menu_input not in menu_choices:
-            print("Invalid menu choice")
+            print("Invalid menu choice")  # print result if user keys in a wrong input and start the loop again.
 
         else:
-            print(f"{len(places)} places saved in places.csv")
+            print(f"{len(places)} places saved in places.csv")  # ends loop when user chooses q
 
     place_file.close()
     print("Have a nice day:)")  # display message when user chooses q
