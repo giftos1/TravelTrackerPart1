@@ -41,7 +41,11 @@ def main():
                            ">>").lower()
 
         if menu_input == "l":
-            get_max_name_length(places)
+            place = [place for place in places]
+            if NOT_VISITED in place[0][3]:
+                get_max_name_length(places)
+            else:
+                print(len(places), "places. No places left to visit why not add a new place?")
 
         # Get name, country and priority input of a place and add them to the Travel Tracker
         elif menu_input == "a":
@@ -52,7 +56,7 @@ def main():
 
         elif menu_input == "m":
             place = [place for place in places]
-            if "n" in place[0][3]:
+            if NOT_VISITED in place[0][3]:
                 get_max_name_length(places)
                 print("Enter the number of a place to mark as visited")
                 place_number_input(places)
