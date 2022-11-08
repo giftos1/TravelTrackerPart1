@@ -5,8 +5,10 @@ By: Gift Sydney Ogingo
 This program is a simple "travel tracker" that allows a user to track places they wish to visit and
 places they have already visited.
 
+It is written in python 3.
+
 The program reads and writes a list of places in a text file,
-and each place has: name, country, priority, whether it is visited (v) or unvisited (n)
+and each place has: name, country, priority, whether it is visited (v) or unvisited (n).
 
 Users can choose to see the list of places, including the total number of places and unvisited
 places.
@@ -36,6 +38,9 @@ can reuse the same function).
 
 This repo contains this projects' files.  
 (`temp.csv` has the original data and I used it to retrieve the data back in case I edited the contents of `places.csv` and want the original data back).
+
+# Outcome
+This project helped me build my skills in python using: selection, repetition, file input/output, exceptions, lists and string formatting.
 
 # The expected final output is shown below:
 - Travel Tracker 1.0 - by Gift Sydney Ogingo
