@@ -55,7 +55,7 @@ def main():
             if "n" in place[0][3]:
                 get_max_name_length(places)
                 print("Enter the number of a place to mark as visited")
-                get_number_input(places)
+                place_number_input(places)
             else:
                 print("No unvisited places")
 
@@ -67,32 +67,6 @@ def main():
 
     place_file.close()
     print("Have a nice day:)")  # display message when user chooses q
-
-
-def validate_country_input():
-    """Get country input from user and check for blank answers"""
-    country_input = ""
-    validate_input = False
-    while not validate_input:
-        country_input = input("Country: ")
-        if country_input == "":
-            print("Input can not be blank")
-        else:
-            validate_input = True
-    return country_input
-
-
-def validate_name_input():
-    """Get name input from user and check for blank answers"""
-    name_input = ""
-    validate_input = False
-    while not validate_input:
-        name_input = input("Name: ")
-        if name_input == "":
-            print("Input can not be blank")
-        else:
-            validate_input = True
-    return name_input
 
 
 def get_max_name_length(places):
@@ -154,6 +128,32 @@ def display_visit_status(count, unvisited_count):
     return print(f"{count} places. You still want to visit {unvisited_count} places.")
 
 
+def validate_name_input():
+    """Get name input from user and check for blank answers"""
+    name_input = ""
+    validate_input = False
+    while not validate_input:
+        name_input = input("Name: ")
+        if name_input == "":
+            print("Input can not be blank")
+        else:
+            validate_input = True
+    return name_input
+
+
+def validate_country_input():
+    """Get country input from user and check for blank answers"""
+    country_input = ""
+    validate_input = False
+    while not validate_input:
+        country_input = input("Country: ")
+        if country_input == "":
+            print("Input can not be blank")
+        else:
+            validate_input = True
+    return country_input
+
+
 def get_priority(name_input, country_input, places, place_file):
     """Get priority input and validate input
     Display the added place through printing the name,country and priority of the place"""
@@ -182,7 +182,9 @@ def new_added_place(name, country, priority_input, places, place_file):
     place_file.write(f"\n{new_place[0]},{new_place[1]},{new_place[2]},{new_place[3]}")
 
 
-def get_number_input(places):
+def place_number_input(places):
+    """Validate the place number the user chooses to mark as visited. If place number is within range call
+    convert_unvisited_place() """
     number_input = 0
     validate_input = False
     while not validate_input:
