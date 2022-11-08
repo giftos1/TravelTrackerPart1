@@ -65,6 +65,7 @@ def main():
         else:
             print(f"{len(places)} places saved in places.csv")
 
+    place_file.close()
     print("Have a nice day:)")  # display message when user chooses q
 
 
