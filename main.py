@@ -3,12 +3,12 @@ Name:Gift Sydney Ogingo
 Date started:5/7/2022
 GitHub URL:https://github.com/giftos1/TravelTrackerPart1
 """
+import csv
 from operator import itemgetter
-
-Visited = "v"
 
 FILENAME = 'places.csv'
 NOT_VISITED = "n"
+VISITED = "v"
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
     print(len(places), "places loaded from", FILENAME)
 
     menu_choices = ["l", "a", "m", "q"]
-    place_file = open("places.csv", "a+")
+    place_file = open("places.csv", "r+", newline="")
 
     menu_input = ""
     while menu_input != "q":
@@ -52,7 +52,7 @@ def main():
         elif menu_input == "a":
             name_input = validate_name_input()
             country_input = validate_country_input()
-            get_priority(name_input, country_input, places, place_file)  # Get priority input and check for
+            get_priority(name_input, country_input, places)  # Get priority input and check for
             # ValueError
 
         elif menu_input == "m":
@@ -61,6 +61,7 @@ def main():
                 get_max_name_length(places)
                 print("Enter the number of a place to mark as visited")
                 place_number_input(places)
+
             else:
                 print("No unvisited places")
 
@@ -69,6 +70,9 @@ def main():
 
         else:
             print(f"{len(places)} places saved in places.csv")  # ends loop when user chooses q
+
+    writer = csv.writer(place_file)
+    writer.writerows(places)  # write places in file using csv module
 
     place_file.close()
     print("Have a nice day:)")  # display message when user chooses q
@@ -166,7 +170,7 @@ def validate_country_input():
     return country_input
 
 
-def get_priority(name_input, country_input, places, place_file):
+def get_priority(name_input, country_input, places):
     """Get priority input and validate input
     Display the added place through printing the name,country and priority of the place"""
     validate_input = False
@@ -183,15 +187,14 @@ def get_priority(name_input, country_input, places, place_file):
             print("Invalid input; enter a valid number")
 
     print(f"{name_input} in {country_input} (priority {priority_input}) added to Travel Tracker")  # display added place
-    new_added_place(name_input, country_input, priority_input, places, place_file)
+    new_added_place(name_input, country_input, priority_input, places)
 
 
-def new_added_place(name, country, priority_input, places, place_file):
+def new_added_place(name, country, priority_input, places):
     """Add new place to the nested list of places and sort the list accordingly"""
     new_place = [name, country, priority_input, NOT_VISITED]
     places.append(new_place)
     places.sort(key=itemgetter(3, 2))
-    place_file.write(f"\n{new_place[0]},{new_place[1]},{new_place[2]},{new_place[3]}")
 
 
 def place_number_input(places):
@@ -221,11 +224,11 @@ def convert_unvisited_place(number_input, places):
     for count, place in enumerate(places):
         count += 1
         while number_input == count:  # checks the number which the user types in that corresponds to a given place
-            if place[3] == Visited:
+            if place[3] == VISITED:
                 print("That place is already visited!")
             else:
+                place[3] = VISITED
                 print(f"{place[0]} in {place[1]} visited!")
-                place[3] = Visited
                 places.sort(key=itemgetter(3, 2))
             break
 
