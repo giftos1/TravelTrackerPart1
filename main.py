@@ -75,7 +75,7 @@ def main():
 
 
 def get_max_name_length(places):
-    """get maximum length of city and country name and call display_formatted_list"""
+    """get maximum length of city and country name in file and call display_formatted_list"""
 
     city_names = []
     country_names = []
@@ -102,8 +102,12 @@ def display_formatted_list(max_city_length, max_country_length, places):
 
     for place in places:
         count += 1
-        additional_city_space = max_city_length - len(place[0])
-        additional_country_space = max_country_length - len(place[1])
+
+        additional_city_space = max_city_length - len(place[0])  # additional spaces to be added to line up a city with
+        # a shorter name length to the city with the longest name length
+
+        additional_country_space = max_country_length - len(place[1])  # additional spaces to be added to line up a
+        # country with a shorter name length to the country with the longest name length
 
         # display a dynamic lined up list based on longest city and country name.
         if len(place[0]) != max_city_length and len(place[1]) != max_country_length:
@@ -119,6 +123,9 @@ def display_formatted_list(max_city_length, max_country_length, places):
                       "{:{}}priority".format("", additional_country_space), place[2])
 
         else:
+            # No spaces are added if the city and country name's length is the maximum from the list of city_names and
+            # country names in get_max_name_length() function
+
             if "n" in place[3]:
                 unvisited_count += 1
                 print(f"*{count}.", place[0], "in", place[1], "priority", place[2])
