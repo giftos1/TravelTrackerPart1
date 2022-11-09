@@ -42,6 +42,14 @@ This repo contains this projects' files.
 # Outcome
 This project helped me build my skills in python using: selection, repetition, file input/output, exceptions, lists and string formatting.
 
+# The following sample run was made using a CSV file that contained:
+
+Lima,Peru,3,n
+
+Auckland,New Zealand,1,v
+
+Rome,Italy,12,n
+
 # The expected final output is shown below:
 - Travel Tracker 1.0 - by Gift Sydney Ogingo
 - 3 places loaded from places.csv
