@@ -1,6 +1,5 @@
 """
 Name:Gift Sydney Ogingo
-Date started:5/7/2022
 GitHub URL:https://github.com/giftos1/TravelTrackerPart1
 """
 import csv
@@ -17,19 +16,18 @@ def main():
 
     # load csv file and append sorted data to a nested list
     places = []
-    with open('places.csv', 'r') as output_file:
-        for each_row in output_file:
-            row = each_row.strip("\n")
-            rows = row.split(",")  # split each row in file to a list
-            rows[2] = int(rows[2])  # convert number string to integer for sorting
-            places.append(rows)
+    place_file = open("places.csv", "r")
+    for each_row in place_file:
+        row = each_row.strip()
+        rows = row.split(",")  # split each row in file to a list
+        rows[2] = int(rows[2])  # convert number string to integer for sorting
+        places.append(rows)
 
     places.sort(key=itemgetter(3, 2))  # sort list by visited status then priority
-
+    print(places)
     print(len(places), "places loaded from", FILENAME)
 
     menu_choices = ["l", "a", "m", "q"]
-    place_file = open("places.csv", "r+", newline="")
 
     menu_input = ""
     while menu_input != "q":
@@ -71,10 +69,12 @@ def main():
         else:
             print(f"{len(places)} places saved in places.csv")  # ends loop when user chooses q
 
+    # write nested list to file and close file
+    place_file = open("places.csv", "w", newline='')
     writer = csv.writer(place_file)
     writer.writerows(places)  # write places in file using csv module
-
     place_file.close()
+
     print("Have a nice day:)")  # display message when user chooses q
 
 
@@ -187,7 +187,7 @@ def get_priority(name_input, country_input, places):
             print("Invalid input; enter a valid number")
 
     print(f"{name_input} in {country_input} (priority {priority_input}) added to Travel Tracker")  # display added place
-    new_added_place(name_input, country_input, priority_input, places)
+    return new_added_place(name_input, country_input, priority_input, places)
 
 
 def new_added_place(name, country, priority_input, places):
@@ -216,7 +216,7 @@ def place_number_input(places):
 
         except ValueError:
             print("Invalid input; enter a valid number")
-    convert_unvisited_place(number_input, places)
+    return convert_unvisited_place(number_input, places)
 
 
 def convert_unvisited_place(number_input, places):
