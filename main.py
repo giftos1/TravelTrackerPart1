@@ -36,7 +36,7 @@ def main():
                            "A - Add new place\n"
                            "M - Mark a place as visited\n"
                            "Q - Quit\n"
-                           ">>").lower()
+                           ">>>").lower()
 
         if menu_input == "l":
             place = [place for place in places]
@@ -50,8 +50,7 @@ def main():
         elif menu_input == "a":
             name_input = validate_name_input()
             country_input = validate_country_input()
-            get_priority(name_input, country_input, places)  # Get priority input and check for
-            # ValueError
+            get_priority(name_input, country_input, places)  # Get priority input and check for ValueError
 
         elif menu_input == "m":
             place = [place for place in places]
@@ -96,7 +95,7 @@ def get_max_name_length(places):
     max_country_length = len(max(country_names, key=len))
     max_city_length = len(max(city_names, key=len))
 
-    display_formatted_list(max_city_length, max_country_length, places)
+    return display_formatted_list(max_city_length, max_country_length, places)
 
 
 def display_formatted_list(max_city_length, max_country_length, places):
@@ -136,7 +135,7 @@ def display_formatted_list(max_city_length, max_country_length, places):
             else:
                 print(f" {count}.", place[0], "in", place[1], "priority", place[2])
 
-    display_visit_status(count, unvisited_count)
+    return display_visit_status(count, unvisited_count)
 
 
 def display_visit_status(count, unvisited_count):
@@ -149,8 +148,8 @@ def validate_name_input():
     name_input = ""
     validate_input = False
     while not validate_input:
-        name_input = input("Name: ")
-        if name_input == "":
+        name_input = input("name: ")
+        if not name_input.strip():
             print("Input can not be blank")
         else:
             validate_input = True
@@ -163,7 +162,7 @@ def validate_country_input():
     validate_input = False
     while not validate_input:
         country_input = input("Country: ")
-        if country_input == "":
+        if not country_input.strip():
             print("Input can not be blank")
         else:
             validate_input = True
@@ -204,7 +203,7 @@ def place_number_input(places):
     validate_input = False
     while not validate_input:
         try:
-            number_input = int(input(">>"))
+            number_input = int(input(">>>"))
             if number_input <= 0:
                 print("Number must be > 0")
 
